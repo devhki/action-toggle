@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<meta charset="utf-8">
+<title>Action Toggle</title>
+<meta name="description" content="">
+<meta name="author" content="">
+
+<style media="screen">
+	.toggle-this {
+		display : block;
+		width : 100px;
+		height : 100px;
+		background-color : blue;
+	}
+
+	.toggle-this--red {
+		background-color : red;
+	}
+</style>
+
+<a
+	href="#"
+	class="a-toggle"
+	data-toggle-target=".toggle-this"
+	data-toggle-class="toggle-this--red"
+>Toggle box color</a>
+
+<div class="toggle-this"></div>
+
+
+<script src="jspm_packages/system.js"></script>
+<script src="config.js"></script>
+<script type="text/javascript">
+	System.import('main');
+</script>
+
+</html>
