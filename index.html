@@ -7,6 +7,15 @@
 <meta name="author" content="">
 
 <style media="screen">
+
+	.a-toggle {
+
+	}
+
+	.a-toggle--toggled {
+		color : #f0f;
+	}
+
 	.toggle-this {
 		display : block;
 		width : 100px;
@@ -22,8 +31,9 @@
 <a
 	href="#"
 	class="a-toggle"
+	data-toggle-class="a-toggle--toggled"
 	data-toggle-target=".toggle-this"
-	data-toggle-class="toggle-this--red"
+	data-toggle-target-class="toggle-this--red"
 >Toggle box color</a>
 
 <div class="toggle-this"></div>

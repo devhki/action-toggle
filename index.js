@@ -6,19 +6,17 @@ class ActionToggle {
 	constructor(link) {
 		this.link = link;
 		this.$link = $(link);
+		this.toggleClass = this.$link.data().toggleClass ? this.$link.data().toggleClass : 'active';
 		this.$target = $(this.$link.data().toggleTarget);
-		this.toggleClass = this.$link.data().toggleClass;
+		this.toggleTargetClass = this.$link.data().toggleTargetClass ? this.$link.data().toggleTargetClass : 'active';
 
 		if ( !this.$target.length ) {
 			throw 'data-toggle-target must be set';
 		}
 
-		if ( !this.toggleClass ) {
-			throw 'data-toggle-class must be set';
-		}
-
 		this.$link.on('click.' + ActionToggle.MODULE_NAME, (e) => {
-			this.$target.toggleClass( this.toggleClass );
+			this.$link.toggleClass( this.toggleClass );
+			this.$target.toggleClass( this.toggleTargetClass );
 			return false;
 		});
 	}
