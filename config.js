@@ -14,6 +14,7 @@ System.config({
   },
 
   map: {
+    "Modernizr/Modernizr": "github:Modernizr/Modernizr@2.8.3",
     "babel": "npm:babel-core@5.8.34",
     "babel-runtime": "npm:babel-runtime@5.8.34",
     "core-js": "npm:core-js@1.2.6",

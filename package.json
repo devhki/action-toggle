@@ -13,6 +13,7 @@
   },
   "jspm": {
     "dependencies": {
+      "Modernizr/Modernizr": "github:Modernizr/Modernizr@^2.8.0",
       "jquery": "github:components/jquery@1"
     },
     "devDependencies": {

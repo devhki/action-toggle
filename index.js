@@ -1,5 +1,6 @@
 // @todo add unique
 import $ from 'jquery';
+import modernizr from 'Modernizr/Modernizr';
 
 class ActionToggle {
 
@@ -9,14 +10,22 @@ class ActionToggle {
 		this.toggleClass = this.$link.data().toggleClass ? this.$link.data().toggleClass : 'active';
 		this.$target = $(this.$link.data().toggleTarget);
 		this.toggleTargetClass = this.$link.data().toggleTargetClass ? this.$link.data().toggleTargetClass : 'active';
+		this.transitionEndName = this._whichTransitionEvent();
 
-		if ( !this.$target.length ) {
+		if (!this.$target.length) {
 			throw 'data-toggle-target must be set';
 		}
 
 		this.$link.on('click.' + ActionToggle.MODULE_NAME, (e) => {
-			this.$link.toggleClass( this.toggleClass );
-			this.$target.toggleClass( this.toggleTargetClass );
+			this.$link.toggleClass(this.toggleClass);
+
+			this.$target
+				.toggleClass(this.toggleTargetClass)
+				.off(this.transitionEndName)
+				.one(this.transitionEndName, () => {
+					$(window).trigger('resize');
+				});
+
 			return false;
 		});
 	}
@@ -25,6 +34,19 @@ class ActionToggle {
 
 	destroy() {
 		this.$link.off('.' + ActionToggle.MODULE_NAME);
+	}
+
+
+
+	// Private methods
+
+	_whichTransitionEvent() {
+		let transEndEventNames = {
+			'WebkitTransition': 'webkitTransitionEnd', // Saf 6, Android Browser
+			'MozTransition': 'transitionend', // only for FF < 15
+			'transition': 'transitionend' // IE10, Opera, Chrome, FF 15+, Saf 7+
+		};
+		return transEndEventNames[modernizr.prefixed('transition')];
 	}
 
 }
